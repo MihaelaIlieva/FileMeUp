@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="../database/sendRequestUtility.js" defer></script>
+        <script src="login.js" defer></script>
+        <link rel="stylesheet" href="login.css">
+        <title>Вход</title>
+    </head>
+    <body>
+        <div class="form-container">
+            <h1>Вход</h1>
+            <form method="POST" id="login-form">
+                <span id="all-errors" class="error"></span>
+                <div>
+                    <input type="text" id="username" name ="username" required placeholder="Потребителско име" class="full-width">
+                    <span id="username-error" class="error"></span>
+                </div>
+            <div>
+                <input type="password" id="password" name ="password" required placeholder="Парола" class="full-width">
+                <span id="password-error" class="error"></span>
+            </div>
+            
+            <div>
+                <button id="loginButton" type="submit">Влез</button>
+            </div>
+            <div>
+                <span id="all-error" class="error"></span>
+            </div>
+                <p id="success"></p>
+        </form>
+    </div>
+    </body>
+</html>
