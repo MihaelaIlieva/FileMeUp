@@ -1,0 +1,69 @@
+document.addEventListener("DOMContentLoaded", function() {
+        getFiles();
+});
+
+function getFiles() {
+    fetch("getFiles.php")
+        .then(response => response.json())
+        .then(files => renderFileList(files))
+        .catch(error => console.error("Error:", error));
+}
+
+function renderFileList(files, isNew = false) {
+    if(files.length>1){
+        files.sort(function(a, b) {
+            var dateA = new Date(a.date);
+            var dateB = new Date(b.date);
+            return dateB - dateA; // Sort files in ascending order based on date
+          });
+    }
+
+    var fileList = document.getElementById("file-list");
+    
+    for (var i = 0; i < files.length; i++) { 
+  
+        var row = document.createElement("tr");
+
+        var check = document.createElement("td");
+        var checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.name = "file-checkbox";
+        check.appendChild(checkbox);
+        row.appendChild(check);
+
+        if(isNew){
+            console.log(files[i].id);
+            files[i].id = decodeURIComponent(files[i].id);
+        }
+        var name = document.createElement("td");
+        var link = document.createElement("a");
+        console.log(files);
+        link.href = "../singlefile/singlefile.html?file=" + encodeURIComponent(files[i].id);
+        console.log("URI :"+ decodeURIComponent(encodeURIComponent(files[i].id )));
+        link.textContent = files[i].name;
+        name.appendChild(link);
+        row.appendChild(name);
+
+        var owner = document.createElement("td");
+        owner.textContent = files[i].username;
+        row.appendChild(owner);
+
+        var size= document.createElement("td");
+        size.textContent = files[i].size;
+        row.appendChild(size);
+
+        var date = document.createElement("td");
+        date.textContent = files[i].date;
+        row.appendChild(date);
+
+        if(!isNew){
+            fileList.appendChild(row);
+
+        } else {
+            fileList.insertBefore(row, fileList.firstChild);
+        }
+
+    }
+
+}
+

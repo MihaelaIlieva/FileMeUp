@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../database/absolutePathFinder.php"></script>
+    <script src="../database/uploadRequestUtility.js" defer></script>  
+    <script src="uploadFiles/uploadFiles.js" defer></script>
+    <script src="displayFileList.js" defer></script>
+    <script src="checkboxAll.js" defer></script>
+    <script src="../deleteFiles/deleteFiles.js" defer></script>
+    <script src="../shareFiles/givePermissions.js" defer></script>
+    <script src="../database/sendRequestUtility.js" defer></script>
+        <script src="greetings/greetings.js" defer></script>
+    <script src="../logout/logout.js" defer></script>
+    <link rel="stylesheet" href="uploadPage.css">
+    <link rel="stylesheet" href="../shareFiles/window.css">
+    <title>Лични файлове</title>
+</head>
+<body>
+<div id="buttonDiv">
+  <button id="logoutButton">Изход</button>
+</div>
+<div>
+  <p id="userInfo">Здравей!</p> 
+</div>
+<form enctype="multipart/form-data"  method="POST" class="form-container">
+  <div class="container">Избери файл:
+    <input name="files[]" type="file" multiple="multiple" id="uploadContent" />
+    <button class="btn" type="submit" id="uploadButton">Качи</button>
+  </div>
+  <div>
+    <span id="overflow" class="result"></span>
+    <span id="result" class="result"></span>
+  </div>
+</form>
+
+<h1>Списък с файлове</h1>
+
+    <table id="file-list-table">
+      <input type="checkbox" id="checkAll">
+      <span id="textCheckAll"> Избери всички</span>
+      <div class="container1">
+        <div class="btn-container">
+          <span id="noSelected" class="error"></span>
+          <button id="share-button">Сподели</button>
+          <button id="delete-button">Изтрий</button>
+        </div>
+      </div>
+      </div>
+      <div id="window" style="display:none;">
+        <h2>Споделяне с друг потребител</h2>
+        <input type="text" id="inputEmail" placeholder="Add email">
+        <div>
+          <span id="displayError" class="error"></span>
+          <span id="displaySuccess" class="success"></span>
+        </div>
+        <div class="button-container">
+          <button id="doneButton" class="done-button">Сподели</button>
+          <button id="closeButton" class="close-button">Затвори</button>
+        </div>
+      </div>
+        <thead>
+            <tr class="black">
+                <th></th>
+                <th>Име</th>
+                <th>Собственик</th>
+                <th>Размер</th>
+                <th>Дата на качване</th>
+            </tr>
+        </thead>
+        <tbody id="file-list">
+        </tbody>
+    </table>
+</body>
+</html>
